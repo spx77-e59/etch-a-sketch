@@ -1,0 +1,19 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+.container {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+    flex: 0 0 50px;
+    justify-content: center;
+}
+.item {
+    border: 1px solid black;
+    flex: 0 0 50px;
+}
