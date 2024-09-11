@@ -3,18 +3,30 @@
     margin: 0;
 }
 .container {
-    border: 1px solid black;
     display: flex;
     flex-direction: column;
 }
 
 .row {
     display: flex;
-    flex: 0 0 50px;
     justify-content: center;
 }
 .item {
-    border: 1px solid black;
-    flex: 0 0 50px;
+    border: 1px solid rgb(212, 206, 206);
     z-index: 10;
+}
+
+button {
+    display: block;
+    margin: 16px auto;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    color: rgba(0, 0, 0, 0.6);
+    transition: background 0.15s;
+}
+
+button:hover {
+    background: rgba(0, 0, 0, 0.15);
 }
