@@ -5,15 +5,16 @@
 .container {
     display: flex;
     flex-direction: column;
+    gap: 1px;
 }
 
 .row {
     display: flex;
     justify-content: center;
+    gap: 1px;
 }
 .item {
-    border: 1px solid rgb(212, 206, 206);
-    z-index: 10;
+    border: 2px solid rgb(212, 206, 206);
 }
 
 button {

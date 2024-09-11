@@ -8,7 +8,7 @@ createGrid();
 
 btnElement.addEventListener("click", () => {
   const temp = prompt("Enter a new grid size.");
-  (temp === null || temp ==="") && window.location.reload();
+  (temp === null || temp === "") && window.location.reload();
   temp < 101 ? (sideLength = temp) : prompt("Enter a new grid size.");
   while (containerElement.firstChild) {
     containerElement.removeChild(containerElement.firstChild);
@@ -23,6 +23,7 @@ function createGrid() {
     for (let j = 0; j < sideLength; j++) {
       const itemElement = document.createElement("div");
       itemElement.classList = "item";
+      itemElement.setAttribute("data-alpha", "0.1");
       rowElement.appendChild(itemElement);
       itemElement.style.flex = `0 0 ${GRIDSIZE / sideLength}px`;
     }
@@ -31,18 +32,31 @@ function createGrid() {
   }
 }
 
-function randomColorSelector() {
+function randomRGB() {
   const red = Math.floor(Math.random() * 256);
   const green = Math.floor(Math.random() * 256);
   const blue = Math.floor(Math.random() * 256);
-  return `rgb(${red},${green},${blue})`;
+  return `${red},${green},${blue}`;
 }
 
-containerElement.addEventListener("mouseover", (e) => {
-  e.target.classList.contains("item") &&
-    (e.target.style.background = randomColorSelector());
-});
+function mouseoverHandler(e) {
+  if (e.target.classList.contains("item")) {
 
-containerElement.addEventListener("mouseout", (e) => {
-  e.target.classList.contains("item") && (e.target.style.background = "");
-});
+    let alpha = parseFloat(e.target.getAttribute("data-alpha"));
+    e.target.style.background = `rgba(${randomRGB()}, ${alpha})`;
+
+    if (!isNaN(alpha) && alpha < 1) {
+      alpha = Math.min(alpha + 0.1, 1);
+      e.target.style.opacity = alpha;
+      e.target.setAttribute("data-alpha", alpha.toFixed(1));
+    }
+  }
+}
+
+containerElement.addEventListener("mouseover", mouseoverHandler);
+
+// function mouseoutHandler(e) {
+//     e.target.classList.contains("item") && (e.target.style.background = "");
+// }
+
+// containerElement.addEventListener("mouseout", mouseoutHandler);
